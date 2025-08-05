@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Factories\GenresFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,7 +19,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
-
+            GenresSeeder::class,
+            FilmsSeeder::class
         ]);
 
         User::factory(20)->create();
