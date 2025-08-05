@@ -1,0 +1,162 @@
+.container {
+    width: 100% !important;
+    max-width: 1980px;
+}
+.pdf-header{
+    background-color: #031635; color: #ffffff;
+    font-family: 'EB Garamond', serif;
+    position: relative;
+    padding: 25px;
+
+}
+
+.pdf-header-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3.125rem; line-height: 3.75rem; font-weight: normal;
+    margin-bottom: 15px;
+}
+
+h2 { font-size: 1.8rem; line-height: 1.8rem; text-transform: uppercase; margin-bottom: 15px}
+.pdf-header-img {
+    position: absolute;
+    top: 30%;
+    right: 6%;
+}
+
+.pdf-header-img img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.main-content {
+    display: flex;
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.content {
+    margin-top: 60px;
+}
+
+.section-title-wrap {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+}
+
+.section-separator {
+    position: absolute;
+    top: 33px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #031635;
+//z-index: -1;
+}
+
+.section-title {
+    font-size: 1.90rem;
+    line-height: 2.0rem;
+    color: #031635;
+    text-transform: uppercase;
+    background-color: white;
+    padding: 0 10px;
+    z-index: 2;
+}
+
+.section-title-svg {
+    background-color: white;
+    padding: 0 10px;
+    z-index: 2;
+}
+
+.about-section-body,
+.experience-item-description {
+    padding: 10px 20px;
+    text-indent: 2rem;
+}
+
+.section-body {
+    padding: 10px 20px;
+}
+
+.experience-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.experience-item-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.experience-item-position {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.experience-item-company {
+    font-style: italic;
+    text-align: center;
+    font-size: 12px;
+}
+.experience-item-time {
+    text-align: center;
+}
+
+.experience-item-description {
+    width: 70%;
+}
+
+.sidebar-section {
+    outline: 2px solid yellow;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-section-title {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #ffffff;
+    padding: 10px 15px;
+    background-color: #08345d;
+}
+
+.sidebar-section-contacts-list {
+    outline: 2px solid green;
+    padding: 10px 15px;
+}
+
+.sidebar-section-contacts-item {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-section-contacts-item svg {
+    margin-right: 5px;
+}
+
+.sidebar-section-contacts-item span {
+    color: #C3C3C7;
+}

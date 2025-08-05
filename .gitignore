@@ -1,0 +1,4 @@
+docker/mysql/db_data
+docker/postgres/db_data
+.idea
+/react_folders

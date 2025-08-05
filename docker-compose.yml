@@ -1,0 +1,90 @@
+services:
+    nginx:
+        image: nginx:1.16-alpine
+        container_name: nginx_app
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./api:/var/www/api
+            - ./client:/var/www/client
+            - ./docker/nginx:/etc/nginx/conf.d/
+        networks:
+            - network_app
+        depends_on:
+            - api
+            - client
+
+    db:
+        image: mysql:8.0.31
+        container_name: app_db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: app_db
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_PASSWORD: secret
+            MYSQL_USER: user
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        volumes:
+            - ./docker/mysql/db_data:/var/lib/mysql
+            - ./docker/mysql:/etc/mysql/conf.d
+        networks:
+            - network_app
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - 8783:80
+        environment:
+            - PMA_ARBITRARY=1
+        networks:
+            - network_app
+    api:
+        build:
+            args:
+                user: ubuntu
+                uid: 1000
+            context: ./docker/php
+            dockerfile: Dockerfile
+        tty: true
+        container_name: api_app
+        restart: unless-stopped
+        working_dir: /var/www/api
+        volumes:
+            - ./api:/var/www/api
+        networks:
+            - network_app
+        links:
+            - db
+
+    client:
+        image: node:22-bullseye
+        container_name: client
+        tty: true
+        volumes:
+            - ./client:/client
+        working_dir: /client
+        tmpfs:
+            - /tmp
+        environment:
+            NODE_ENV: development
+            NUXT_HOST: "0.0.0.0"
+        command: npm run dev
+        networks:
+            - network_app
+        links:
+            - api
+        ports:
+            - "3000:3000"
+volumes:
+    db:
+networks:
+    network_app:
+        driver: bridge
